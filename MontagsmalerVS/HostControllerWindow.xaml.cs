@@ -61,15 +61,20 @@ namespace MontagsmalerVS
         {
             HostController.disabledrawing();
             string[] s = HostController.randomWords();
-            HostController.sendWords(HostController.getClientNumber((String)lbNames.SelectedItem), s[0], s[1], s[2]);     
+            HostController.sendWords(HostController.currentPlayerIndex, s[0], s[1], s[2]);     
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "*.txt | Textfiles";
+            ofd.Filter = "txt|*.txt";
             ofd.ShowDialog();
             HostController.loadWordList(ofd.FileName);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            HostController.endHosting();
         }
     }
 }

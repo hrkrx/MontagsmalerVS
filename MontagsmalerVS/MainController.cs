@@ -17,6 +17,7 @@ namespace MontagsmalerVS
         public static ListBox UserList = null;
         public static ListBox Chat = null;
         public static int timerCounter = 0;
+        public static string word = "";
         public static void Init(string name)
         {
             lname = name;
@@ -68,6 +69,17 @@ namespace MontagsmalerVS
             {
                 Chat.Items.Add(msg);
             }));
+        }
+
+        public static string OpenChooser(string[] s)
+        {
+            canv.Dispatcher.Invoke(new Action(() =>
+            {
+                Chooser c = new Chooser();
+                c.setWords(s);
+                c.ShowDialog();
+            }));
+            return word;
         }
     }
 }

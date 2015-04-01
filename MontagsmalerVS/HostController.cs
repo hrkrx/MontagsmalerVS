@@ -24,8 +24,10 @@ namespace MontagsmalerVS
         static List<string> words = new List<string>();
         static List<int> points = new List<int>();
         static List<handleClient> hClients = new List<handleClient>();
-        static int currentPlayerIndex = 0;
+        public static int currentPlayerIndex = 0;
         static Random r = new Random(DateTime.Now.Millisecond);
+        static System.Timers.Timer t = new System.Timers.Timer();
+        static int time = 0;
         public static List<String> getNames()
         {
             return clientNames;
@@ -35,6 +37,29 @@ namespace MontagsmalerVS
             bw.WorkerSupportsCancellation = true;
             bw.DoWork += bw_DoWork;
             bw.RunWorkerAsync();
+            t.Elapsed += t_Elapsed;
+            t.Interval = 1000;
+        }
+
+        static void t_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            if (time > 0)
+            {
+                time--;
+            }
+            else
+            {
+                disabledrawing();
+                if (currentPlayerIndex < clientNames.Count - 1)
+                {
+                    currentPlayerIndex++;
+                }
+                else
+                {
+                    currentPlayerIndex = 0;
+                }
+                t.Stop();
+            }
         }
         public static void endHosting()
         {
@@ -146,10 +171,10 @@ namespace MontagsmalerVS
         {
             string str = w1 + "#" + w2 + "#" + w3 + "~";
             TcpClient cl = clientsList[clientNo];
-            var stream = cl.GetStream();
-            byte[] data = new byte[str.Length + 1];
-            data[0] = 6;
+            var stream = cl.GetStream();           
             byte[] s = Encoding.UTF8.GetBytes(str);
+            byte[] data = new byte[s.Length + 1];
+            data[0] = 6;
             for (int i = 0; i < s.Length; i++)
             {
                 data[1 + i] = s[i];
@@ -194,6 +219,8 @@ namespace MontagsmalerVS
             data[0] = 8;
             data[1] = sec;
             broadcast(data, "Server", false);
+            time = sec;
+            t.Start();
         }
         internal static void setWord(byte[] dataFromClient)
         {
@@ -205,7 +232,7 @@ namespace MontagsmalerVS
             setTimer(60);
         }
 
-        private static string getData(byte[] data)
+        public static string getData(byte[] data)
         {
             string res = "";
             byte[] s = new byte[data.Length - 1];
@@ -282,7 +309,6 @@ namespace MontagsmalerVS
                             {
                                 HostController.broadcast(dataFromClient, clNo, false);
                             }
-
                             break;
                         case 2:
                             Debug.WriteLine("broadcast Picture :" + dataFromClient[0]);

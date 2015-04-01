@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,11 +36,7 @@ namespace MontagsmalerVS
             }
             MainWindow mw = new MainWindow();
             this.Hide();
-            mw.ShowDialog();
-            if (cbHost.IsChecked.Value)
-            {
-                HostController.endHosting();
-            }
+            mw.Show();
             this.Close();
         }
     }

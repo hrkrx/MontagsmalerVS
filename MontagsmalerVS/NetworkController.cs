@@ -137,7 +137,8 @@ namespace MontagsmalerVS
         }
         private void receivedWords(byte[] inStream)
         {
-            throw new NotImplementedException();
+            string[] s = HostController.getData(inStream).Split('#');
+            sendWord(MainController.OpenChooser(s));
         }
         public void send(string chat)
         {
@@ -154,6 +155,23 @@ namespace MontagsmalerVS
                 stream.Write(data, 0, data.Length);
                 stream.Flush();
                 
+            }
+        }
+        public void sendWord(string word)
+        {
+            if (client.Connected)
+            {
+                byte[] text = Encoding.UTF8.GetBytes(word + "~");
+                byte[] data = new byte[text.Length + 1];
+                data[0] = 9;
+                for (int i = 0; i < text.Length; i++)
+                {
+                    data[i + 1] = text[i];
+                }
+                var stream = client.GetStream();
+                stream.Write(data, 0, data.Length);
+                stream.Flush();
+
             }
         }
         public void sendName(string name)

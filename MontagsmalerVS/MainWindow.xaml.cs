@@ -197,6 +197,7 @@ namespace MontagsmalerVS
                 }
             }
         }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (nw != null)

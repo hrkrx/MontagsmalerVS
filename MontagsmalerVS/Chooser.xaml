@@ -11,9 +11,9 @@
             <RowDefinition Height="168"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="btChoice1" Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="265" Height="48"/>
-        <Button x:Name="btChoice2" Content="Button" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Width="265" Height="48"/>
-        <Button x:Name="btChoice3" Content="Button" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Width="265" Height="48"/>
+        <Button x:Name="btChoice1" Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="265" Height="48" Click="btChoice1_Click"/>
+        <Button x:Name="btChoice2" Content="Button" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Width="265" Height="48" Click="btChoice2_Click"/>
+        <Button x:Name="btChoice3" Content="Button" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Width="265" Height="48" Click="btChoice3_Click"/>
 
     </Grid>
 </Window>
