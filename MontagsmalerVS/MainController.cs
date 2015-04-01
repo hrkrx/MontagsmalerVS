@@ -16,8 +16,11 @@ namespace MontagsmalerVS
         public static bool drawing = false;
         public static ListBox UserList = null;
         public static ListBox Chat = null;
+        public static ListBox Points = null;
         public static int timerCounter = 0;
         public static string word = "";
+        public static Label lhint = null;
+        public static Label lword = null;
         public static void Init(string name)
         {
             lname = name;
@@ -35,7 +38,6 @@ namespace MontagsmalerVS
             }
             return res;
         }
-
         public static void setData(byte[] pic)
         {
             using (MemoryStream ms = new MemoryStream(pic))
@@ -47,7 +49,6 @@ namespace MontagsmalerVS
                 ms.Close();
             }
         }
-
         public static void setUserList(String[] names)
         {
             UserList.Dispatcher.Invoke(new Action(() => 
@@ -62,7 +63,6 @@ namespace MontagsmalerVS
                 }
             }));
         }
-
         public static void addChat(String msg)
         {
             Chat.Dispatcher.Invoke(new Action(() =>
@@ -70,7 +70,6 @@ namespace MontagsmalerVS
                 Chat.Items.Add(msg);
             }));
         }
-
         public static string OpenChooser(string[] s)
         {
             canv.Dispatcher.Invoke(new Action(() =>
@@ -78,8 +77,40 @@ namespace MontagsmalerVS
                 Chooser c = new Chooser();
                 c.setWords(s);
                 c.ShowDialog();
+                lword.Content = word;
             }));
             return word;
+        }
+        public static void SetPoints(byte[] list)
+        {
+            Points.Dispatcher.Invoke(new Action(() =>
+            {
+                Points.Items.Clear();
+                string s = HostController.getData(list);
+                string[] ps = s.Split('#');
+                foreach (var item in ps)
+                {
+                    Points.Items.Add(item.Replace("\n",""));
+                }
+            }));
+        }
+        public static void SetHint(byte p)
+        {
+            string s = "";
+            for (int i = 0; i < p; i++)
+            {
+                s += "_ ";
+            }
+            lhint.Dispatcher.Invoke(new Action(() => 
+            {
+                lhint.Content = s;
+            }));
+        }
+
+        internal static void ClearLabels()
+        {
+            lhint.Content = "";
+            lword.Content = "";
         }
     }
 }

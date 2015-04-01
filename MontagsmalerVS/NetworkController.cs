@@ -67,6 +67,7 @@ namespace MontagsmalerVS
                             {
                                 MainController.canv.EditingMode = System.Windows.Controls.InkCanvasEditingMode.None;
                             }));
+                            MainController.ClearLabels();
                             MainController.drawing = false;
                         }
                         break;
@@ -78,6 +79,14 @@ namespace MontagsmalerVS
                         break;
                     case 8:
                         MainController.timerCounter = inStream[1];
+                        break;
+                    case 10:
+                        receivedPoints(inStream);
+                        break;
+                    case 11:
+                        MainController.SetHint(inStream[1]);
+                        break;
+                    case 12:
                         break;
                     default:
                         break;
@@ -142,6 +151,10 @@ namespace MontagsmalerVS
         {
             string[] s = HostController.getData(inStream).Split('#');
             sendWord(MainController.OpenChooser(s));
+        }
+        private void receivedPoints(byte[] inStream)
+        {
+            MainController.SetPoints(inStream);
         }
         public void send(string chat)
         {

@@ -30,6 +30,9 @@ namespace MontagsmalerVS
             MainController.canv = icPaint;
             MainController.UserList = this.lbUsers;
             MainController.Chat = this.lbChat;
+            MainController.lhint = this.lbHint;
+            MainController.lword = this.lbWord;
+            MainController.Points = this.lbP;
             this.Title = MainController.lname;
             icPaint.EditingMode = InkCanvasEditingMode.None;
             t.Elapsed += t_Elapsed;

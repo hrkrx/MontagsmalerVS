@@ -27,6 +27,9 @@ namespace MontagsmalerVS
         public static int currentPlayerIndex = 0;
         static Random r = new Random(DateTime.Now.Millisecond);
         static System.Timers.Timer t = new System.Timers.Timer();
+        static bool highPoints = false;
+        static bool drawPoints = false;
+        static bool guessing = false;
         static int time = 0;
         public static List<String> getNames()
         {
@@ -50,6 +53,9 @@ namespace MontagsmalerVS
             else
             {
                 disabledrawing();
+                guessing = false;
+                highPoints = false;
+                drawPoints = false;
                 if (currentPlayerIndex < clientNames.Count - 1)
                 {
                     currentPlayerIndex++;
@@ -59,6 +65,8 @@ namespace MontagsmalerVS
                     currentPlayerIndex = 0;
                 }
                 t.Stop();
+                string[] s = randomWords();
+                sendWords(currentPlayerIndex, s[0], s[1], s[2]);
             }
         }
         public static void endHosting()
@@ -84,6 +92,7 @@ namespace MontagsmalerVS
             hClients.Add(hclient);
             clientsList.Add(client);
             clientNames.Add(counter.ToString());
+            points.Add(0);
             counter++;
         }
         public static int getClientNumber(string name)
@@ -192,7 +201,7 @@ namespace MontagsmalerVS
             string chat = Encoding.UTF8.GetString(data).Split(':')[1].Trim();
             if (word != "")
             {
-                return chat.Split('~')[0].Trim() == word;
+                return word.Contains(chat.Split('~')[0].Trim()) && guessing;
             }
             return false;
         }
@@ -224,12 +233,23 @@ namespace MontagsmalerVS
         }
         internal static void setWord(byte[] dataFromClient)
         {
-            word = getData(dataFromClient);
+            word = getData(dataFromClient).Remove(0,1);
         }
         internal static void beginGame()
         {
             enabledrawing(currentPlayerIndex);
+            guessing = true;
+            highPoints = true;
+            drawPoints = true;
+            sendHint(Convert.ToByte(word.Length));
             setTimer(60);
+        }
+        private static void sendHint(byte p)
+        {
+            byte[] data = new byte[2];
+            data[0] = 11;
+            data[1] = p;
+            broadcast(data, "Server", false);
         }
         public static string getData(byte[] data)
         {
@@ -240,7 +260,42 @@ namespace MontagsmalerVS
                 s[i] = data[i + 1];
             }
             res = Encoding.UTF8.GetString(data).Split('~')[0];
-            return res;
+            return res.Replace("\t", "").Replace("-", "");
+        }
+        internal static void AddPoints(string s)
+        {
+            s = s.Remove(0,1);
+            if (highPoints)
+            {
+                points[getClientNumber(s.Replace("\t", ""))] += 3;
+                highPoints = false;
+            }
+            else
+            {
+                points[getClientNumber(s.Replace("\t", ""))] += 1;
+            }
+            if (drawPoints)
+            {
+                points[currentPlayerIndex] += 2;
+                drawPoints = false;
+            }
+            sendPoints();
+        }
+        internal static void sendPoints()
+        {
+            string str = "";
+            foreach (var item in points)
+            {
+                str += item + "#";
+            }
+            byte[] dataD = Encoding.UTF8.GetBytes(str.TrimEnd('#') + "~");
+            byte[] data = new byte[dataD.Length + 1];
+            data[0] = 10;
+            for (int i = 0; i < dataD.Length; i++)
+            {
+                data[i + 1] = dataD[i];
+            }
+            broadcast(data, "Server", false);
         }
     }
 
@@ -301,6 +356,7 @@ namespace MontagsmalerVS
                                 data[i + 1] = str[i];
                             }
                             HostController.broadcast(data, clNo, false);
+                            HostController.sendPoints();
                             break;
                         case 1:
                             Debug.WriteLine("broadcast Chat :" + dataFromClient[0]);
@@ -311,6 +367,7 @@ namespace MontagsmalerVS
                             else
                             {
                                 string s = HostController.getData(dataFromClient).Split(':')[0];
+                                HostController.AddPoints(s);
                                 s += " found the word!~";
                                 HostController.broadcast(Encoding.UTF8.GetBytes(s), clNo, false);
                             }
