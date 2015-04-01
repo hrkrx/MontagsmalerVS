@@ -189,10 +189,10 @@ namespace MontagsmalerVS
             {
                 data[i] = dataFromClient[i + 1];
             }
-            string chat = Encoding.UTF8.GetString(data);
+            string chat = Encoding.UTF8.GetString(data).Split(':')[1].Trim();
             if (word != "")
             {
-                return chat.Split('~')[0].Split(':')[1].Trim() == word;
+                return chat.Split('~')[0].Trim() == word;
             }
             return false;
         }
@@ -231,7 +231,6 @@ namespace MontagsmalerVS
             enabledrawing(currentPlayerIndex);
             setTimer(60);
         }
-
         public static string getData(byte[] data)
         {
             string res = "";
@@ -308,6 +307,12 @@ namespace MontagsmalerVS
                             if (!HostController.checkWord(dataFromClient))
                             {
                                 HostController.broadcast(dataFromClient, clNo, false);
+                            }
+                            else
+                            {
+                                string s = HostController.getData(dataFromClient).Split(':')[0];
+                                s += " found the word!~";
+                                HostController.broadcast(Encoding.UTF8.GetBytes(s), clNo, false);
                             }
                             break;
                         case 2:

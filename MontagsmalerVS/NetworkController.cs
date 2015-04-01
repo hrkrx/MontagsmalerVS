@@ -63,8 +63,11 @@ namespace MontagsmalerVS
                         }
                         else
                         {
+                            MainController.canv.Dispatcher.Invoke(new Action(() =>
+                            {
+                                MainController.canv.EditingMode = System.Windows.Controls.InkCanvasEditingMode.None;
+                            }));
                             MainController.drawing = false;
-
                         }
                         break;
                     case 6:
