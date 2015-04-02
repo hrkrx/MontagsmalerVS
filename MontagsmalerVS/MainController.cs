@@ -106,7 +106,6 @@ namespace MontagsmalerVS
                 lhint.Content = s;
             }));
         }
-
         internal static void ClearLabels()
         {
             lhint.Content = "";
