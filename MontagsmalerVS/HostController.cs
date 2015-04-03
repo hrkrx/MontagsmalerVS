@@ -16,7 +16,7 @@ namespace MontagsmalerVS
     public static class HostController
     {
         static BackgroundWorker bw = new BackgroundWorker();
-        static TcpListener listener = new TcpListener(IPAddress.Any, 8000);
+        static TcpListener listener = new TcpListener(IPAddress.Any, 8001);
         static List<TcpClient> clientsList = new List<TcpClient>();
         static List<string> clientNames = new List<string>();
         static int counter = 0;
@@ -260,7 +260,7 @@ namespace MontagsmalerVS
                 s[i] = data[i + 1];
             }
             res = Encoding.UTF8.GetString(data).Split('~')[0];
-            return res.Replace("\t", "").Replace("-", "");
+            return res;
         }
         internal static void AddPoints(string s)
         {

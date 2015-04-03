@@ -108,8 +108,11 @@ namespace MontagsmalerVS
         }
         internal static void ClearLabels()
         {
-            lhint.Content = "";
-            lword.Content = "";
+            lhint.Dispatcher.Invoke(new Action(() =>
+            {
+                lhint.Content = "";
+                lword.Content = "";
+            }));
         }
     }
 }

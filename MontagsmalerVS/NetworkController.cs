@@ -25,7 +25,7 @@ namespace MontagsmalerVS
         {
             try
             {
-                client.Connect(hostip, 8000);
+                client.Connect(hostip, 8001);
             }
             catch (Exception)
             {
