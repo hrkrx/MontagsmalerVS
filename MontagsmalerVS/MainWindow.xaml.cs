@@ -208,5 +208,41 @@ namespace MontagsmalerVS
                 nw.deregister();
             }
         }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            this.DragMove();
+        }
+
+        private void Button_Click_14(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Click_15(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == System.Windows.WindowState.Maximized)
+            {
+                this.WindowState = System.Windows.WindowState.Normal;
+                //this.Background = null;
+            }
+            else
+            {
+                this.WindowState = System.Windows.WindowState.Maximized;
+                //this.Background = new SolidColorBrush(Color.FromRgb(203, 234, 255));
+            }
+        }
+
+        private void Button_Click_16(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = System.Windows.WindowState.Minimized;
+        }
+
+        private void Image_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
     }
 }

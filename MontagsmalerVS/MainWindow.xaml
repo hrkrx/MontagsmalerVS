@@ -1,9 +1,10 @@
-﻿<Window x:Class="MontagsmalerVS.MainWindow"
+﻿<Window x:Name="mWindow" x:Class="MontagsmalerVS.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="539.497" Width="814.941" Closing="Window_Closing">
-    <Grid Background="#FFE6E6E8">
+        Title="MainWindow" Height="645.497" Width="814.941" Closing="Window_Closing" WindowStyle="None" ResizeMode="CanResizeWithGrip" Background="{x:Null}" AllowsTransparency="True">
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="119"/>
             <RowDefinition/>
             <RowDefinition Height="39"/>
         </Grid.RowDefinitions>
@@ -12,29 +13,34 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="152"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="lbChat" Grid.Column="2" Margin="10,30,10,10"/>
-        <TextBox x:Name="tbChat" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" Height="23" Margin="10,6,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" KeyDown="TextBox_KeyDown"/>
-        <InkCanvas x:Name="icPaint" Grid.Column="1" Margin="10,30,10,10"/>
-        <Button Content="" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Width="20" Background="Red" Grid.Row="1" Grid.Column="1" Height="20" Click="Button_Click"/>
-        <Button Content="" HorizontalAlignment="Left" Margin="35,9,0,0" VerticalAlignment="Top" Width="20" Background="#FF00F500" Grid.Row="1" Grid.Column="1" Height="20" Click="Button_Click_1"/>
-        <Button Content="" HorizontalAlignment="Left" Margin="60,9,0,0" VerticalAlignment="Top" Width="20" Background="#FF0000F5" Grid.Row="1" Grid.Column="1" Height="20" Click="Button_Click_2"/>
-        <Button Content="" HorizontalAlignment="Left" Margin="85,9,0,0" VerticalAlignment="Top" Width="20" Background="Yellow" Grid.Row="1" Grid.Column="1" Height="20" Click="Button_Click_3"/>
-        <Button Content="" HorizontalAlignment="Left" Margin="110,9,0,0" VerticalAlignment="Top" Width="20" Background="Magenta" Grid.Row="1" Grid.Column="1" Height="20" Click="Button_Click_4"/>
-        <Button Content="" HorizontalAlignment="Left" Margin="161,9,0,0" VerticalAlignment="Top" Width="20" Background="White" Grid.Row="1" Grid.Column="1" Height="20" Click="Button_Click_6"/>
-        <Button Content="" HorizontalAlignment="Left" Margin="186,9,0,0" VerticalAlignment="Top" Width="20" Background="Black" Grid.Row="1" Grid.Column="1" Height="20" Click="Button_Click_5"/>
-        <ListBox x:Name="lbUsers" Margin="10,30,52,10"/>
-        <Label Content="User" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Width="132" Height="26"/>
-        <Label Content="Chat" Grid.Column="2" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Width="142"/>
-        <Button Content="5" HorizontalAlignment="Left" Margin="212,9,0,0" VerticalAlignment="Top" Width="20" Background="White" Grid.Row="1" Grid.Column="1" Height="20" Click="Button_Click_7"/>
-        <Button Content="15" HorizontalAlignment="Left" Margin="237,9,0,0" VerticalAlignment="Top" Width="20" Background="White" Grid.Row="1" Grid.Column="1" Height="20" Click="Button_Click_8"/>
-        <Button Content="30" HorizontalAlignment="Left" Margin="262,9,0,0" VerticalAlignment="Top" Width="20" Background="White" Grid.Row="1" Grid.Column="1" Height="20" Click="Button_Click_9"/>
-        <Button Content="Eraser" HorizontalAlignment="Left" Margin="287,9,0,0" VerticalAlignment="Top" Width="42" Background="White" Grid.Row="1" Grid.Column="1" Height="20" Click="Button_Click_10"/>
-        <Button Content="Connect" Margin="10,10, 10,10" Grid.Row="1" Click="Button_Click_11" />
-        <Button Content="" HorizontalAlignment="Left" Margin="135,9,0,0" VerticalAlignment="Top" Width="20" Background="#FF783C28" Grid.Row="1" Grid.Column="1" Height="20" Click="Button_Click_12"/>
-        <Button Content="Delete All" Grid.Column="1" HorizontalAlignment="Left" Margin="334,9,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Background="White" Click="Button_Click_13"/>
-        <Label x:Name="lbTime" Content="Time" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <ListBox x:Name="lbP" Margin="100,30,10,10" />
-        <Label x:Name="lbWord" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbHint" Content="" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Top" Width="159"/>
+        <Border BorderBrush="#FFCBEAFF" CornerRadius="8,8,8,8" BorderThickness="1" Background="#FFCBEAFF" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+        <ListBox x:Name="lbChat" Grid.Column="2" Margin="10,25,10,10" Grid.Row="1"/>
+        <TextBox x:Name="tbChat" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Height="23" Margin="10,6,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" KeyDown="TextBox_KeyDown"/>
+        <InkCanvas x:Name="icPaint" Grid.Column="1" Margin="10,25,10,10" Grid.Row="1"/>
+        <Button Content="" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Width="20" Background="Red" Grid.Row="2" Grid.Column="1" Height="20" Click="Button_Click"/>
+        <Button Content="" HorizontalAlignment="Left" Margin="35,9,0,0" VerticalAlignment="Top" Width="20" Background="#FF00F500" Grid.Row="2" Grid.Column="1" Height="20" Click="Button_Click_1"/>
+        <Button Content="" HorizontalAlignment="Left" Margin="60,9,0,0" VerticalAlignment="Top" Width="20" Background="#FF0000F5" Grid.Row="2" Grid.Column="1" Height="20" Click="Button_Click_2"/>
+        <Button Content="" HorizontalAlignment="Left" Margin="85,9,0,0" VerticalAlignment="Top" Width="20" Background="Yellow" Grid.Row="2" Grid.Column="1" Height="20" Click="Button_Click_3"/>
+        <Button Content="" HorizontalAlignment="Left" Margin="110,9,0,0" VerticalAlignment="Top" Width="20" Background="Magenta" Grid.Row="2" Grid.Column="1" Height="20" Click="Button_Click_4"/>
+        <Button Content="" HorizontalAlignment="Left" Margin="161,9,0,0" VerticalAlignment="Top" Width="20" Background="White" Grid.Row="2" Grid.Column="1" Height="20" Click="Button_Click_6"/>
+        <Button Content="" HorizontalAlignment="Left" Margin="186,9,0,0" VerticalAlignment="Top" Width="20" Background="Black" Grid.Row="2" Grid.Column="1" Height="20" Click="Button_Click_5"/>
+        <ListBox x:Name="lbUsers" Margin="10,25,52,10" Grid.Row="1"/>
+        <Label Content="User" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Width="132" Height="26" Grid.Row="1"/>
+        <Label Content="Chat" Grid.Column="2" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Width="142" Grid.Row="1"/>
+        <Button Content="5" HorizontalAlignment="Left" Margin="212,9,0,0" VerticalAlignment="Top" Width="20" Background="White" Grid.Row="2" Grid.Column="1" Height="20" Click="Button_Click_7"/>
+        <Button Content="15" HorizontalAlignment="Left" Margin="237,9,0,0" VerticalAlignment="Top" Width="20" Background="White" Grid.Row="2" Grid.Column="1" Height="20" Click="Button_Click_8"/>
+        <Button Content="30" HorizontalAlignment="Left" Margin="262,9,0,0" VerticalAlignment="Top" Width="20" Background="White" Grid.Row="2" Grid.Column="1" Height="20" Click="Button_Click_9"/>
+        <Button Content="Eraser" HorizontalAlignment="Left" Margin="287,9,0,0" VerticalAlignment="Top" Width="42" Background="White" Grid.Row="2" Grid.Column="1" Height="20" Click="Button_Click_10"/>
+        <Button Content="Connect" Margin="10,10, 10,10" Grid.Row="2" Click="Button_Click_11" />
+        <Button Content="" HorizontalAlignment="Left" Margin="135,9,0,0" VerticalAlignment="Top" Width="20" Background="#FF783C28" Grid.Row="2" Grid.Column="1" Height="20" Click="Button_Click_12"/>
+        <Button Content="Delete All" Grid.Column="1" HorizontalAlignment="Left" Margin="334,9,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Background="White" Click="Button_Click_13"/>
+        <Label x:Name="lbTime" Content="Time" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="234,0,233,0" Grid.Row="1" RenderTransformOrigin="0.639,4.923"/>
+        <ListBox x:Name="lbP" Margin="100,25,10,10" Grid.Row="1" />
+        <Label x:Name="lbWord" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <Label x:Name="lbHint" Content="" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Top" Width="159" Grid.RowSpan="2"/>
+        <Button Content="□" Grid.Column="2" HorizontalAlignment="Left" Margin="89,103,0,0" VerticalAlignment="Top" Width="24" Click="Button_Click_15" Grid.RowSpan="2"/>
+        <Button Content="X" Grid.Column="2" HorizontalAlignment="Left" Margin="118,103,0,0" VerticalAlignment="Top" Width="24" Click="Button_Click_14" Grid.RowSpan="2"/>
+        <Button Content="_" Grid.Column="2" HorizontalAlignment="Left" Margin="60,103,0,0" VerticalAlignment="Top" Width="24" Click="Button_Click_16" Grid.RowSpan="2"/>
+        <Image Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0,0,163,0" Source="TitleDS.png" Stretch="Uniform" MouseDown="Image_MouseDown_1"/>
     </Grid>
 </Window>
