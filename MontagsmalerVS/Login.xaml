@@ -11,7 +11,7 @@
             <RowDefinition Height="109"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="tbName" Margin="10,45,9,44" TextWrapping="Wrap"/>
+        <TextBox x:Name="tbName" Margin="10,45,9,44" TextWrapping="Wrap" KeyDown="tbName_KeyDown"/>
         <Label Content="Username"  Margin="10,10,9,74"/>
         <Button Content="OK" Margin="10,70,59,15" Click="Button_Click"/>
         <CheckBox x:Name="cbHost" Content="Host" HorizontalAlignment="Left" Margin="253,75,0,0" VerticalAlignment="Top" Height="15" Width="45"/>

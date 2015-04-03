@@ -39,5 +39,23 @@ namespace MontagsmalerVS
             mw.Show();
             this.Close();
         }
+
+        private void tbName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                MainController.Init(tbName.Text.Replace("#",""));
+                if (cbHost.IsChecked.Value)
+                {
+                    HostController.beginHosting();
+                    HostControllerWindow hcw = new HostControllerWindow();
+                    hcw.Show();
+                }
+                MainWindow mw = new MainWindow();
+                this.Hide();
+                mw.Show();
+                this.Close();
+            }
+        }
     }
 }
