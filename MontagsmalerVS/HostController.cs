@@ -146,6 +146,7 @@ namespace MontagsmalerVS
             int index = clientNames.IndexOf(name.Split('~')[0]);
             clientNames.RemoveAt(index);
             clientsList.RemoveAt(index);
+            points.RemoveAt(index);
             hClients[index].cancel = true;
             hClients.RemoveAt(index);
         }
@@ -279,6 +280,7 @@ namespace MontagsmalerVS
                 points[currentPlayerIndex] += 2;
                 drawPoints = false;
             }
+            sendNames();
             sendPoints();
         }
         internal static void sendPoints()
@@ -296,6 +298,22 @@ namespace MontagsmalerVS
                 data[i + 1] = dataD[i];
             }
             broadcast(data, "Server", false);
+        }
+        internal static void sendNames()
+        {
+            string dn = "";
+            foreach (var item in HostController.getNames())
+            {
+                dn += item + "#";
+            }
+            byte[] data = new byte[dn.Length + 2];
+            byte[] str = Encoding.UTF8.GetBytes(dn + "~");
+            data[0] = 7;
+            for (int i = 0; i < str.Length; i++)
+            {
+                data[i + 1] = str[i];
+            }
+            HostController.broadcast(data, "Server", false);
         }
     }
 

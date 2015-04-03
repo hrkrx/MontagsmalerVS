@@ -36,8 +36,8 @@
         <Button Content="Delete All" Grid.Column="1" HorizontalAlignment="Left" Margin="334,9,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Background="White" Click="Button_Click_13"/>
         <Label x:Name="lbTime" Content="Time" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="234,0,233,0" Grid.Row="1" RenderTransformOrigin="0.639,4.923"/>
         <ListBox x:Name="lbP" Margin="100,25,10,10" Grid.Row="1" />
-        <Label x:Name="lbWord" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <Label x:Name="lbHint" Content="" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Top" Width="159" Grid.RowSpan="2"/>
+        <Label x:Name="lbWord" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label x:Name="lbHint" Content="" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Top" Width="159" Grid.Row="1"/>
         <Button Content="□" Grid.Column="2" HorizontalAlignment="Left" Margin="89,103,0,0" VerticalAlignment="Top" Width="24" Click="Button_Click_15" Grid.RowSpan="2"/>
         <Button Content="X" Grid.Column="2" HorizontalAlignment="Left" Margin="118,103,0,0" VerticalAlignment="Top" Width="24" Click="Button_Click_14" Grid.RowSpan="2"/>
         <Button Content="_" Grid.Column="2" HorizontalAlignment="Left" Margin="60,103,0,0" VerticalAlignment="Top" Width="24" Click="Button_Click_16" Grid.RowSpan="2"/>
